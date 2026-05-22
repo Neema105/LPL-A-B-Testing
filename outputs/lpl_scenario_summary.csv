@@ -1,0 +1,9 @@
+side,scenario,win_rate,games,wins
+Blue,FD + More Grubs,0.663,92,61
+Blue,FD Only,0.6545,55,36
+Blue,More Grubs Only,0.4671,167,78
+Blue,Neither,0.3662,71,26
+Red,FD + More Grubs,0.6338,71,45
+Red,FD Only,0.5329,167,89
+Red,More Grubs Only,0.3455,55,19
+Red,Neither,0.337,92,31

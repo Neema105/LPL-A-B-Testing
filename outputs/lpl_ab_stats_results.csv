@@ -1,0 +1,5 @@
+side,objective,treatment_label,control_label,treatment_n,control_n,treatment_wr,control_wr,delta,ci_lower,ci_upper,chi2,p_value,cohens_h,significant
+Blue,First Dragon,Got FD,No FD,147,238,0.6599,0.437,0.2229,0.1237,0.3221,17.2111,3.3e-05,0.4518,YES
+Red,First Dragon,Got FD,No FD,238,147,0.563,0.3401,0.2229,0.1237,0.3221,17.2111,3.3e-05,0.4518,YES
+Blue,More Grubs,More Grubs,Fewer Grubs,259,126,0.5367,0.4921,0.0446,-0.0617,0.151,0.5092,0.475466,0.0893,NO
+Red,More Grubs,More Grubs,Fewer Grubs,126,259,0.5079,0.4633,0.0446,-0.0617,0.151,0.5092,0.475466,0.0893,NO
