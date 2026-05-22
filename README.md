@@ -1,27 +1,10 @@
-LPL A/B Testing
-===============
+For this project I set out to answer a question that comes up constantly in League of Legends strategy discussions: is it better to secure first dragon or void grubs, and does the answer change depending on whether your team is on Blue or Red side? To answer it properly I built a full end-to-end data analytics pipeline using PostgreSQL, Python, Excel, and Power BI — mirroring the workflow a professional data analyst would follow in an industry setting.
+I started by loading the raw 2026 Oracle's Elixir match dataset into PostgreSQL, where I wrote SQL views to filter the data down to LPL team rows only and engineer the key features needed for analysis — including derived columns like got_fd, got_more_grubs, and a four-way scenario column capturing every combination of the two objectives. Doing the transformation at the database layer rather than in Python was a deliberate choice: it keeps the logic documented, reproducible, and separated from the statistical work that comes later.
+From there I pulled the cleaned data into Python and ran a formal A/B test. I treated first dragon and void grubs as two independent experiments, with teams that secured each objective as the treatment group and those that did not as the control. I then stratified both experiments by side — Blue and Red — to test whether map geometry affects how much each objective is worth. Using chi-squared tests I calculated p-values, 95% confidence intervals, and Cohen's h effect sizes for each combination.
+The results were clear. First dragon is statistically significant on both sides with a p-value of 0.000033 and a +22.3 percentage point win rate delta — identical for Blue and Red despite Red side securing it 62% of the time due to map proximity. Void grubs, by contrast, produced only a +4.5pp delta with a p-value of 0.475, meaning we cannot reject the null hypothesis that grubs have no effect on win rate in the LPL. First dragon is roughly 2.7 times more correlated with winning than void grubs.
+I then packaged the findings into two deliverables. The Excel workbook serves as an executive summary with five formatted tabs covering the full statistical output, scenario breakdowns, patch trends, and a team-level breakdown — built to be shared with someone who would never open a BI tool. The Power BI dashboard provides an interactive three-page report where viewers can slice by patch and side to explore the data themselves, with the A/B test results, Blue vs Red deep dive, and patch trend analysis each on their own page.
+The most interesting nuance the analysis surfaced is that Blue side securing first dragon is both rare and extremely meaningful — it only happens 38% of the time, but when it does, Blue side wins at 66%, the highest win rate of any scenario in the dataset. This kind of insight is only visible when you look at the objective through the lens of side, which was the central question driving the whole project.
 
-Python analysis project for loading LPL match data into PostgreSQL, running A/B tests for First Dragon and Void Grubs, and exporting CSV and Excel summary outputs.
+<img width="1328" height="766" alt="image" src="https://github.com/user-attachments/assets/6a6169a6-6371-4ab8-bba7-1162e1767263" />
 
-Setup
------
-
-Create the PostgreSQL database named `lolanalytics`, install dependencies, and set `DATABASE_URL`.
-
-```powershell
-python -m venv .venv
-.\.venv\Scripts\pip install -r requirements.txt
-$env:DATABASE_URL = "postgresql://postgres:YOUR_PASSWORD@localhost:5432/lolanalytics"
-```
-
-Run
----
-
-```powershell
-.\.venv\Scripts\python.exe scripts\load_data.py
-.\.venv\Scripts\python.exe scripts\create_stats_summary.py
-.\.venv\Scripts\python.exe scripts\ab_testing.py
-.\.venv\Scripts\python.exe scripts\excel_export.py
-```
-
-The final workbook is written to `outputs/lpl_executive_summary.xlsx`.
+<img width="1325" height="765" alt="image" src="https://github.com/user-attachments/assets/b16c94b3-2892-4cb5-b183-f026f57dd841" />
