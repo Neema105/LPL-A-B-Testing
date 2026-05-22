@@ -4,6 +4,6 @@ I pulled the 2026 Oracle's Elixir dataset into PostgreSQL, wrote SQL views to cl
 The most interesting finding was around Blue side specifically. Red side gets first dragon 62% of the time due to map layout, but the win rate impact is identical for both sides — meaning the objective itself is genuinely valuable, not just a byproduct of being in a stronger position. When Blue side does manage to steal it, they win 66% of the time, the highest of any scenario in the data.
 I packaged everything into a formatted Excel summary and a three-page Power BI dashboard. If you're drafting for the LPL, prioritise dragon.
 
-<img width="1328" height="766" alt="image" src="https://github.com/user-attachments/assets/6a6169a6-6371-4ab8-bba7-1162e1767263" />
+<img width="2027" height="1063" alt="image" src="https://github.com/user-attachments/assets/ad08ed78-8061-420f-97b1-8510f2d6c533" />
 
 <img width="1325" height="765" alt="image" src="https://github.com/user-attachments/assets/b16c94b3-2892-4cb5-b183-f026f57dd841" />
